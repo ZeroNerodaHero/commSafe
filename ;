@@ -1,0 +1,142 @@
+<?php 
+    include_once("login.php");
+
+    //parameters
+    //api-key requires
+    $apiKey = "null";
+    $option = empty($_POST["option"]) ? 0:$_POST["option"];
+
+    if($option == 0){
+        genNoParamInfo();
+        die();
+    }
+
+    //dev parameters
+    $hrText = (empty($_POST["human_readable"]) ? false : $_POST["human_readable"]);
+
+    $returnResponse = generateError("Invalid Option");
+    if(validAPIkey($apiKey){
+        if($option == 'l'){
+            if(!empty($_POST["username"]) && !empty($_POST["password"])){
+                $returnResponse = login($_POST["username"],$_POST["password"]); 
+            } else {
+                $returnResponse = generateError("Missing Parameters");
+            }
+        }
+        else if($option == 'u'){
+            if(!empty($_POST["userId"]) && !empty($_POST["sessionId"])){
+                $returnResponse = userInfo($_POST["userId"],$_POST["sessionId"]); 
+            } else {
+                $returnResponse = generateError("Missing Parameters");
+            }
+        }
+        else if($option == 'h'){
+            if(!empty($_POST["userId"]) && !empty($_POST["sessionId"])){
+                $returnResponse = getHistory($_POST["userId"],$_POST["sessionId"]); 
+            } else {
+                $returnResponse = generateError("Missing Parameters");
+            }
+        }
+        else if($option == 'r'){
+        else if($option == 'f'){
+        else if($option == 'a'){
+        }
+    }
+    echo $returnResponse;
+    function validAPIRkey($apiKey){ return 1; } 
+    function userInfo($userId,$sessionId){
+        global $conn;
+        $que = "SELECT * FROM userList
+                WHERE userId='$userId' and sessionId='$sessionId'";
+        $res = $conn->query($que);
+        $userId = null;
+        if(!empty($res) || $res->num_rows){
+            return generateError("User not found");
+        }
+        $userInfo = $res->fetch_assoc()
+        if($userInfo["expireTime"] < date()){
+            return generateError("Session has expired, please login again");
+        }
+        return 
+        '{
+            "code":1,
+            "first_name":"'.$userInfo["first_name"].',
+            "last_name":"'.$userInfo["last_name"].',
+            "phoneNum":"'.$userInfo["phoneNum"].',
+            "email":"'.$userInfo["email"].',
+            "perm":"'.$userInfo["perm"].',
+            "status":"'.$userInfo["status"].'}';
+    }
+    function login($username,$password){
+        global $conn;
+        $que = "SELECT userId FROM userList
+                WHERE username='$username' and password='$password'";
+        $res = $conn->query($que);
+        $userId = null;
+        if(!empty($res) || $res->num_rows){
+            return generateError("User not found");
+        }
+        while($row = $res->fetch_assoc())
+            $userId = $row["userId"];
+    
+        $newSessionId = rand();
+        $que = "UPDATE userList
+                SET sessionId=$newSessionId,
+                    expireTime=DATE_ADD(NOW(),INTERVAL 1 HOUR)
+                WHERE username='$username' and password='$password'";
+        $conn->query($que);                
+        return '{
+                "code":1,
+                "userId":"'.$userId.'",
+                "sessionId":"'.$newSessionId.'"}';
+    }
+    function generateError($msg){
+        return '{"code":0,"msg":"'.$msg.'"}';
+    }
+
+    function genNoParamInfo(){
+        echo "<pre>
+        Welcome to this API
+
+        Preparamters:
+            Please provide an API_key with each call
+        Possible Parameters with
+        'opt': 
+            - l >> login
+            -----
+            Requires a 'username' and 'password'
+            Query will return a JSON with 'usercookie' and 'sessionId'
+            if valid username and password
+            -----
+            - u >> user
+            -----
+            Requires a 'userId' and 'sessionId' from above
+            Query will return a JSON with all user info
+            -----
+            - h >> history 
+            -----
+            Requires a 'userId' and 'sessionId' from above
+            Query will return a JSON with all user history
+            -----
+            - r >> check request
+            -----
+            Requires a 'userId' and 'sessionId' from above
+            Or use 'requestId'
+            Query will return whether or not this user has a request
+            -----
+            - f >> finish request
+            -----
+            Requires a 'userId' and 'sessionId' from above
+            Returns a 'requestId'
+            Query will return a success code
+            -----
+            - a >> add request
+            -----
+            Requires parameters as strings:
+            'name','phoneNum','features','geoInfo','isEmergency'
+            Will check the following parameters:
+            'mArea','aInfo'
+            Returns a 'requestId'
+        </pre>";
+    }
+?>
