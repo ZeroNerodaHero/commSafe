@@ -1,0 +1,161 @@
+#newFormCont{
+    --titleColor: rgb(30, 34, 34);
+    --zIndexL1: 1001;
+    --zIndexL2: 1002;
+    padding: 0px 5px;
+    word-break: break-word;
+}
+hr{
+    width: 50%;
+    margin-bottom: 25px;
+    background-color: black;
+}
+#newFormHeadCont{
+    display: flex;
+    justify-content: center;
+}
+#newFormHead{
+    font-size: 2rem;
+    font-weight: bolder;
+    text-align: center;
+
+    margin-bottom: 10px;
+    border-bottom: 1px black solid;
+    width: fit-content;
+}
+.inputFormCont{
+    display: grid;
+    height: fit-content;
+    margin-top: 2ex;
+
+    position: relative;
+}
+/* form stuff of "material ui" */
+.nameFormHead{
+    width: fit-content;
+    margin: 0px 0px 3px 2px;
+    position: absolute;
+    font-weight: bolder;
+    color: var(--titleColor);
+    transition: margin 1s cubic-bezier(0.01, 0.7, 0.745, 0.715);
+}
+.nameFormBox{
+    position: relative;
+    width: 100%;
+
+    background-color: #ffffff00;
+    border: none;
+    border-bottom: 1px black solid;
+    font-size: 1.2rem;
+
+    z-index: var(--zIndexL2);
+}
+.nameFormBox:focus ~ label{
+    font-size: 0.75rem;
+    margin-top: -2.5ex;
+}
+.nameFormBox:valid ~ label{
+    font-size: 0.75rem;
+    margin-top: -2.5ex;
+}
+/* end */
+.formPS{
+    text-align: center;
+    font-size: .65rem;
+    margin: 3px 0px;
+    color: rgb(81, 81, 81);
+}
+/* emergency */
+#emergencyCont{
+    display: grid;
+    grid-template-columns: auto auto;
+    margin-top: 5px;
+}
+#emergencyLabel{
+    color: var(--titleColor);
+    font-weight: bold;
+    width: fit-content;
+    padding-top: 3px;
+}
+#emergencyButtonCont{
+    display: flex;
+    justify-content: end;
+}
+#emergencyInput{
+    width: fit-content;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#emergencyToggle{
+    background-color: gray;
+    position: relative;
+    width: 40px;
+    height: 24px;
+    border-radius: 20px;
+    border: 1px black solid;
+}
+#emergencyToggle:after{
+    content: ' ';
+    border-radius: 20px;
+    position: absolute;
+    background-color: rgb(222, 222, 222);
+    border: 1px black solid;
+    width: 15px;
+    height: 15px;
+    
+    top: 3px;
+    left: 2px;
+
+    transition: 1s;
+}
+#emergencyInput:checked + #emergencyToggle{
+    background-color: greenyellow;
+}
+#emergencyInput:checked + #emergencyToggle:after{
+    right: 2px;
+    left: auto;
+}
+/* end */
+#additionalInfo{
+    width: 100%;
+}
+#submitButtonCont{
+    float: right;
+}
+#formSubmit{
+    margin: 10px 0px;
+}
+
+textarea{
+    background-color: #ffffff55;
+    resize: none;
+    height: 40px;
+}
+
+#formOverlay{
+    background-color: #00000093;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
+    /* cehck app.css */;
+    border-radius: var(--newRequestFormBorderRadius);
+    z-index: 10000;
+}
+#formOverlayText{
+    height: 80%;
+
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    
+    color: white;
+}
+#formOverlayHeader{
+    font-size: 2rem;
+    font-weight: bolder;
+}

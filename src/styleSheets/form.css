@@ -1,0 +1,48 @@
+/* form stuff of "material ui" */
+.formItemTitle{
+    width: fit-content;
+    margin: 0px 0px 3px 2px;
+    position: absolute;
+    font-size: 0.8rem;
+    font-weight: bolder;
+    color: var(--titleColor);
+    transition: margin 1s cubic-bezier(0.01, 0.7, 0.745, 0.715);
+}
+.formItemBox{
+    position: relative;
+    width: 100%;
+
+    background-color: #ffffff00;
+    border: none;
+    border-bottom: 1px black solid;
+    font-size: 0.75rem;
+
+    z-index: 1000;
+}
+.formItemBox:focus ~ label{
+    font-size: 0.75rem;
+    margin-top: -2.5ex;
+}
+.formItemBox:valid ~ label{
+    font-size: 0.75rem;
+    margin-top: -2.5ex;
+}
+.formItemCont{
+    display: grid;
+    margin-bottom: 18px;
+}
+/* end */
+.flexSpacing{
+    color: #ffffff00;
+    padding-left: 5px;
+}
+.formSubmitButtonCont{
+    text-align: end;
+}
+.twoButtonFormLeftRight{
+    display: flex;
+    justify-content: space-around;
+}
+.formSubmitButton{
+
+}

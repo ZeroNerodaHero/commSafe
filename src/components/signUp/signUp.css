@@ -1,0 +1,32 @@
+#signUpTabCont{
+    z-index:50;
+    align-items: center;
+    justify-content: center;
+}
+#signUpHeader{
+    margin-bottom: 24px;
+    font-size: 1.25rem;
+    font-weight: bolder;
+}
+#signUpFormCont{
+    width: 100%;
+    background-color: rgba(255, 0, 0, 0.538);
+    text-align: left;
+    padding: 7%;
+}
+#signUpNameCont{
+    display: flex;
+}
+#signUpTabCenter{
+    display: grid;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(0, 0, 0, 0.36);
+}
