@@ -91,29 +91,14 @@
         global $conn;
         $que = "SELECT userId FROM userList
                 WHERE email='$email' or phoneNum='$phoneNum'";
-echo $que;
         $res = $conn->query($que);
         if(!empty($res) &&  $res->num_rows>0) return generateError("You already have an account",0);
         
         $userId = rand();
         $que = "INSERT INTO userList(userId,first_name,last_name,password,email,phoneNum,accountPerm)
                 VALUES($userId,'$f_name','$l_name','$password','$email','$phoneNum',0)";
-        echo $que;
-        $que = "CREATE TABLE history_$userId(
-                requestId int,
-                walkerId int,
-                time timestamp,
-                location_x double,
-                location_y double,
-                end_location_x double,
-                end_location_y double,
-                feature varchar(800),
-                meet_up varchar(800),
-                emergency bool,
-                additional_info varchar(800),
-                endTime timestamp DEFAULT CURRENT_TIMESTAMP
-                )";
-        echo $que;
+        $res = $conn->query($que);
+        echo '{"code":1}';
     }
     function submitNewRequest($userId,$sessionId,$name,$phoneNum,$features,
                              $location_x,$location_y,$isEmergency,$aInfo="",$meet_up=""){
@@ -143,7 +128,7 @@ echo $que;
         $conn->query($que);
         return '{"code":1,"responseId":'.$lastId.'}';
     }
-    function finishRequest($userId,$sessionId,$loc_x,$loc_y){
+    function finishRequest($userId,$sessionId,$loc_x=-1,$loc_y=-1){
         global $conn;
         $check= checkRequest($userId,$sessionId);
         if($check[0] != 0){
@@ -160,12 +145,13 @@ echo $que;
         $res = $conn->query($que);
         $requestInfo = $res->fetch_assoc();
          
-        $que = "INSERT INTO history_".$userId."(
-                    requestId,time,location_x,location_y,end_location_x,end_location_y,walkerId,
+        $que = "INSERT INTO requestHistory(
+                    requestId,requesterId,time,location_x,location_y,end_location_x,end_location_y,walkerId,
                     feature,meet_up,emergency,additional_info
                 )
                 VALUES(
                     ".$requestInfo["requestId"].",
+                    ".$userId.",
                     '".$requestInfo["time"]."',
                     ".$requestInfo["location_x"].",
                     ".$requestInfo["location_y"].",
@@ -238,7 +224,7 @@ echo $que;
         if(!checkSession($userId,$sessionId,0)){
             return generateError("Login or session has expired");
         }
-        $que = "SELECT * FROM history_".$userId;
+        $que = "SELECT * FROM requestHistory WHERE requesterId=".$userId;
         $res = $conn->query($que);
         if(empty($res) || $res->num_rows == 0){
             return generateError("Empty History",101);
@@ -254,7 +240,7 @@ echo $que;
                 "time_start":"'.$start_time.'",
                 "time_end":"'.$end_time.'",
                 "location_start":['.$row["location_x"].','.$row["location_y"].'],
-                "location_end":'.'"NA",
+                "location_end":['.$row["end_location_x"].','.$row["end_location_y"].'],
                 "walker_name":'.$row["walkerId"].',
                 "notes":"'.$row["additonalInfo"].'"}';
             $checkZero = 1;
@@ -306,9 +292,6 @@ echo $que;
                 "code":1,
                 "userId":'.$userId.',
                 "sessionId":'.$newSessionId.'}';
-    }
-    function generateError($msg,$errorCode=0){
-        return '{"code":'.$errorCode.',"msg":"'.$msg.'"}';
     }
     function checkSession($userId,$sessionId,$isRequest=false){
         global $conn;
