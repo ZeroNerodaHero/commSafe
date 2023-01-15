@@ -1,0 +1,19 @@
+version: "3"
+services:
+    frontend:
+        build: reactFrontEnd/.
+        ports:
+        - "8080:3000"
+    backend:
+        build: backendFiles/.
+        ports:
+        - "8070:80"
+    db:
+        image: mariadb:10.6
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+            MYSQL_DATABASE: comm 
+        volumes: 
+            - ./dbdata2:/var/lib/mysql
+            - ./dbInit:/docker-entrypoint-initdb.d/:ro

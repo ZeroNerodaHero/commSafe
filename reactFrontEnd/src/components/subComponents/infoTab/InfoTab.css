@@ -1,0 +1,154 @@
+#infoTab{
+    --maxTabHeight: 400px;
+    display: grid;
+    grid-template-columns: 40px auto;
+}
+#infoTabTabCont{
+    margin: 5px 0px;
+    border-right: 1px black solid;
+    width: fit-content;
+}
+.tabOpt{
+    height: 30px;
+    width:  30px;
+    margin: 5px 3px;
+    padding: 4px;
+}
+.tabOpt:hover{
+    height: 34px;
+    width: 34px;
+    padding: 2px;
+}
+.optImg{
+    height: 100%;
+}
+#infoCont{
+    text-align: center;
+    margin: 15px 10px;
+}
+#imgDisplayCont{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 7px;
+}
+#imgDisplay{
+    border: 1px black solid;
+    overflow: hidden;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+#loginHeader{
+    color: var(--titleColor);
+    text-align: start;
+    padding-left: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: underline;
+}
+/* history */
+#historyTabEncap{
+    max-height: var(--maxTabHeight);
+    overflow: auto;
+    padding-right: 3px;
+}
+.historyEncap{
+    text-align: start;
+    padding-bottom: 2px;
+    border-bottom: 1px black solid;
+    margin-bottom: 7px;
+}
+.historyTimeDisplay{
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+}
+.timeStart{
+    display: flex;
+}
+.timeEnd{
+    display: flex;
+}
+.sectionHead{
+    font-weight: bold;
+    padding-right: 3px;
+}
+.walkerName{
+    padding-left: 7px;
+    font-size: .95rem;
+}
+.locationList{
+    padding-left: 7px;
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+.notesHead{
+    font-weight: bold;
+    font-size: 0.7rem;
+}
+.noteText{
+    font-size: 0.8rem;
+    font-style: italic;
+    padding-left: 7px;
+}
+/*end history */
+#finishRequest{
+    height: 100%;
+    display: grid;
+    align-items: center;
+
+}
+#finishRequestCont{
+    padding-bottom: 5%;
+}
+#finishRequestText{
+    font-size: 0.8rem;
+    padding: 3px 25px;
+}
+#fButtonCont{
+    display: flex;
+    justify-content: center;
+    height: fit-content;
+}
+#finishButton{
+    border-top: 1px black solid;
+    border-bottom: 4px black solid;
+    border-left: 2px #00000000 solid;
+    border-right: 2px #00000000 solid;
+
+    border-radius: 6px;
+    font-size: 3rem;
+    font-weight: bolder;
+
+    width: fit-content;
+    height: fit-content;
+    padding: 3px 23px;
+
+    background-color: greenyellow;
+
+}
+#finishButton:hover{
+    border-top: 3px black solid;
+    border-bottom: 1px black solid;
+    border-left: 2px #000000 solid;
+    border-right: 2px #000000 solid;
+}
+#finishInfo{
+    font-size: 0.6rem;
+    display: flex;
+    justify-content: space-around;
+    padding: 0px 13px;
+}
+
+#signUpCont{
+    text-align: left;
+    margin-top: 3px;
+}
+#signUpText{
+    font-weight: bold;
+    text-decoration: underline;
+}
+#signUpText:hover{
+    color: rgb(66, 91, 255);
+}

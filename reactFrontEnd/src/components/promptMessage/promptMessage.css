@@ -1,0 +1,25 @@
+#promptGuiCont{
+    z-index: 100;
+    position: fixed;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#promptRequestText{
+    position: relative;
+    width: fit-content;
+
+}
+
+#promptBox{
+    padding: 15px 50px;
+    background-color: green;
+    border: 2px black solid;
+    border-radius: 5px;
+    margin-bottom: 17vh;
+}

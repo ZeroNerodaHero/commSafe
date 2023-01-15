@@ -1,0 +1,191 @@
+#adminControlCont{
+    margin: 5px;
+    display: grid;
+    grid-template-rows: fit-content(40px) auto;
+    height: 97vh;
+    overflow: auto;
+}
+#topBar{
+    display: flex;
+    margin-right: 11px;
+    width: fit-content;
+}
+.topBarItem{
+    margin: 3px 2px 0px 2px;
+    border-left: 1px black solid;
+    border-right: 1px black solid;
+    padding: 3px 6px 0px 3px;
+    border-radius: 3px 3px 0px 0px;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+.topBarItem:hover{
+    background-color: rgba(0, 0, 0, 0.35);
+}
+#controlContentCont{
+    border: 1px black solid;
+    margin-left: 2px;
+    padding: 3px;
+
+    overflow-x: scroll;
+}
+.activeRequestItemHeader{
+    font-weight: 400;
+}
+
+#AdminPage{
+    display: grid;
+    grid-template-columns: 40vw 60vw;
+    background-color: rgb(119, 119, 255);
+}
+#leftSide{
+    background-color: rgb(255, 166, 166);
+    height: 100vh;
+  
+    /*resize:horizontal;*/
+    max-width: 70vw;
+    min-width: 30vw;
+    width: 100%;
+    
+    overflow: auto;
+}
+#adminControlCont{
+}
+.newRequestItemCont{
+}
+.newRequestItemInfoCont{
+    position: relative;
+    border: 1px black solid;
+    margin: 5px 10px 0px 10px;
+    text-align: left;
+    padding: 5px 4px;
+}
+.newRequest_textBox{
+    margin-right: 9px;
+}
+.newRequest_time{
+    position: absolute;
+    top: 1px;
+    right: 3px;
+    font-size: 0.8rem;
+}
+.emergency_icon{
+    position: absolute;
+    bottom: 2px;
+    right: 3px;
+}
+.fullfillCont{
+    display: flex;
+    margin-right: 21px;
+    justify-content: flex-end;
+}
+.fullfillButton{
+    width: fit-content;
+    border: 1px black solid;
+    border-top: 0px;
+    padding: 3px 5px;
+    border-radius: 0px 0px 3px 3px;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+.fullfillButton:hover{
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.availableWalkerItemCont{
+    display: grid;
+    grid-template-columns: 90% 10%;
+}
+.checkBoxCont{
+    display: grid;
+    margin-right: 7px;
+}
+.selectRequest{
+    display: none;
+}
+.selectRequest:checked ~ label > div {
+    background-color: red;
+}
+.walkerSelector > div{
+    background-color: green;
+}
+#updateRequestButton{
+    font-size: 40px;
+}
+
+#inProcess{
+    text-align: left;
+    padding: 4px 6px;
+    margin-top: 13px;
+}
+.activeRequestItemHeader{
+    font-weight: 800;
+    margin-top: 7px;
+}
+.inProcRequestItemCont{
+    display: grid;
+    grid-template-columns: 65% auto;
+    align-items: center;
+}
+.walkerListItem{
+    border: 1px black solid;
+    margin-bottom: 2px;
+    padding: 2px;
+    position: relative;
+}
+.walkerListHeader{
+    font-weight: 700;
+    margin-top: 5px;
+}
+.walkerListVal{
+    
+}
+.freeWalkerButton{
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    font-size: 0.8rem;
+}
+.cancelInProcRequest{
+    border: 1px black solid;
+    border-top: 0px black solid;
+    width: fit-content;
+    margin-left: 21px;
+    padding: 2px 8px;
+    border-radius: 0px 0px 5px 5px;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+.cancelInProcRequest:hover{
+    background-color: rgba(0, 0, 0, 0.35);
+}
+.historyListCont{
+}
+.historyListCont > div{
+    width: 120px;
+    font-size: 0.8rem;
+    border-left: 1px black solid;
+    border-right: 1px black solid;
+}
+.userListItemCont{
+    font-size: 0.8rem;
+}
+#historyTable{
+    font-size: 0.8rem;
+}
+th {
+    border: 1px black solid;
+    border-top: 0px black solid;
+}
+td {
+    border: 1px black solid;
+    border-left: 0px black solid;
+    border-right: 0px black solid;
+}
+
+/*
+.history_requesterId
+.history_time
+.history_endtime
+.history_emergency
+.history_feature
+.history_meetUp
+.history_additionalInfo
+.history_walkerId
+*/

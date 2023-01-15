@@ -1,4 +1,5 @@
 .DS_Store
 node_modules/
 
-dbInit2/
+dbInit2/*
+dockerBackend/dbInit2/
