@@ -14,7 +14,14 @@
     //userlist -> returns user list
     $ret = generateError("Invalid Option");
     $option = $hData["option"];
-    if($option=="a"){
+    if($option=="l"){
+        if($hData["username"] == "admin" && $hData["password"] == "password"){
+            $ret = '{"code":1}';
+        } else{
+            $ret = '{"code":0}';
+        }
+    }
+    else if($option=="a"){
         $ret = getActiveRequests(); 
     }
     else if($option == "h"){
@@ -42,7 +49,7 @@
         }
     }
     else if($option == "e"){
-        if(!empty($hData["requestId"]){
+        if(!empty($hData["requestId"])){
             $ret = endRequest($hData["requestId"]);
         }
     }
