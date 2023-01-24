@@ -179,13 +179,16 @@ td {
     border-right: 0px black solid;
 }
 
-/*
-.history_requesterId
-.history_time
-.history_endtime
-.history_emergency
-.history_feature
-.history_meetUp
-.history_additionalInfo
-.history_walkerId
-*/
+#adminLoginCont{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+
+    height: 80vh;
+}
+#adminCenter{
+    width: 30vw;
+    margin: 5px;
+    padding: 5px 20px;
+    border: 1px black solid;
+}

@@ -212,13 +212,12 @@ function LoginTab(props){
             <br></br>
 
             <button onClick={()=>{
+                console.log("ooooo")
                 apiRequest("http://localhost:8070/","",{option:"l",email:email,password:password},"POST").then((data)=>{
                     if(data["code"] == 1){
                         setCookie("userId",data.userId);
                         setCookie("sessionId",data.sessionId);
                         props.setTabState(1);
-                    } else{
-                        setEmail("ERROR")
                     }
                 })
             }}>Login</button>

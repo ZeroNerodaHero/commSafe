@@ -9,13 +9,51 @@ function AdminPage(props){
     const [features,setFeatures] = useState([0,0])
 
     return (
-        <div id="AdminPage">
-            <MapWrapper center={center} features={features}/>
-            <AdminControl setCenter={setCenter}/>
+        <div>
+            {!isLogin ? 
+            <AdminLogin setLogin={setLogin}/>
+            :
+            <div id="AdminPage">
+                <MapWrapper center={center} features={features}/>
+                <AdminControl setCenter={setCenter}/>
+            </div>
+
+            }
         </div>
     )
 }
-
+function AdminLogin(props){
+    const [username,setUsername] = useState("")
+    const [password,setPassword] = useState("")
+    return (
+        <div id="adminLoginCont">
+            <div id="adminCenter">
+                <div id="adminLoginHeader">Login</div>
+                <div className='inputFormCont'>
+                    <input id="adminUserName" name="username" className='nameFormBox'
+                        required="required"
+                        value={username} onChange={(e)=>{setUsername(e.target.value)}}></input>
+                    <label className='nameFormHead'>Username</label>
+                </div>
+                <div className='inputFormCont'>
+                    <input id="adminPassword" name="password" type="password" className='nameFormBox'
+                        required="required"
+                        value={password} onChange={(e)=>{setPassword(e.target.value)}}></input>
+                    <label className='nameFormHead'>Password</label>
+                </div>
+                <button id="adminLoginButton" onClick={()=>{
+                    apiRequest("http://localhost:8070/admin/","",
+                        {option:"l",username:username,password:password},"POST")
+                    .then((data)=>{
+                        if(data["code"] == 1) props.setLogin(1)
+                    })
+                }}>
+                    Login
+                </button>
+            </div>
+        </div>
+    )
+}
 function AdminControl(props){
     const [controlContent, setControlContent] = useState(<ActiveRequest setCenter={props.setCenter}/>)
     return (
@@ -49,15 +87,6 @@ function generateInfoBox(request){
         {request["emergency"] == "1" ? <div className='emergency_icon'>!</div>:<div />}
     </div>
 }
-function generaterWalkerBox(request){
-    return (
-    <div className='newRequestItemInfoCont'>
-        <div><b>Name:</b> {request["first_name"] + " " + request["last_name"]}</div>
-        <div><b>Phone Num:</b> {request["phoneNum"]}</div>
-    </div>
-    )
-}
-
 
 function ActiveRequest(props){
     const [newRequests, setNewRequests] = useState([]);

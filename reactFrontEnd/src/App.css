@@ -4,8 +4,7 @@
 
   --guiButtonZI: 1000;
 
-  --centerButtonColor: rgb(0, 255, 204);
-  --centerButtonColorBoxShadow: rgb(0, 255, 204,0.55);
+  --centerButtonColor: rgb(109, 119, 255);
 
   /* hover new request */
   --pxSize: min(40vw,120px);
@@ -14,6 +13,8 @@
   /* info tab */
   --infoTabBkgColor: var(--newRequestColor);
   --newRequestFormBorderRadius: 5px 50px 5px 5px;
+
+  --bluegradient: linear-gradient(235deg, rgba(0, 0, 255, 0.5), transparent);
 
 }
 
@@ -56,7 +57,9 @@
   position: fixed;
   bottom: 10px;
   right: 10px;
+  /*
   margin: 10px 10px;
+  */
   padding: 20px;
   height: 40px;
   width: 40px;
@@ -68,19 +71,18 @@
   -webkit-user-select: none; /*Safari*/
   -moz-user-select: none;
 
-  background-color: var(--centerButtonColor);
-
+  background-color: var(--newRequestColor);
+  background-image: linear-gradient(215deg, rgba(0,0,255,0.6), transparent);
   display: flex;
   justify-content: center;
   align-items: center;
 
   font-size: 2rem;
+  border: 1px black solid;
 }
+
 #centerButton:hover{
-  --hoverEffectCenter: 0px 0px 0px 15px var(--centerButtonColor);
-  box-shadow: var(--hoverEffectCenter);
-  -webkit-box-shadow: var(--hoverEffectCenter);
-  -moz-box-shadow: var(--hoverEffectCenter);
+  background-image: linear-gradient(215deg, rgba(0,0,255,0.9), transparent);
 }
 
 #newRequestButton{
@@ -92,10 +94,14 @@
 
   border-radius: 50%;
   background-color: var(--newRequestColor);
+  background-image: linear-gradient(235deg, rgba(0, 0, 255, 0.35) 5%, transparent);
+  border: 1px black solid;
 }
 #newRequestButton:hover{
-  border:  var(--newRequestColor) 20px solid;
+  background-image: linear-gradient(235deg, rgba(0, 0, 255, 0.45) 20%, transparent);
+
   /*
+  --hoverNewRequest: 0px 0px 0px 30px var(--newRequestColor);
   --hoverNewRequest: 0px 0px 0px 30px var(--newRequestColor);
   box-shadow: var(--hoverNewRequest);
   -webkit-box-shadow: var(--hoverNewRequest);
@@ -125,11 +131,10 @@
   border: 1px black solid;
   background-color: var(--newRequestColor);
 
-  height: fit-content;
+  height: min(fit-content, 50vh);
   width: min(400px,60vw);
 
   text-align: left;
-
   border-radius: var(--newRequestFormBorderRadius);
 }
 #newRequestFormClose{
@@ -149,6 +154,9 @@
   border-radius: 30% 0% 0% 30%;
   background-color: var(--infoTabBkgColor);
   height: fit-content;
+
+  background-image: var(--bluegradient);
+  border: 1px black solid;
 }
 #infoTabText:hover{
   padding-right: 20px;
@@ -156,6 +164,8 @@
 
 #infoTabExpanded{
   background-color: var(--infoTabBkgColor);
+  background-image: linear-gradient(90deg, rgba(0,0,255,0.4), transparent);
+
 
   display: none;
 
@@ -221,4 +231,11 @@ button {
   background-color: rgba(0, 128, 0, 0.458);
   padding: 6px 12px;
   border-radius: 50%;
+}
+
+@media only screen and (max-width: 600px) {
+  #newRequestForm{
+      overflow: scroll;
+      height: 50vh;
+  }
 }
